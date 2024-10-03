@@ -23,3 +23,13 @@ connectDB()
   app.use("/api/user",usersRoute);
   app.use("/api/auth",authRoutes);
   //here the final url will be localhost:3000/api/user/test
+
+  app.use((err, req,res, next)=>{
+    const statusCode=err.statusCode || 500;
+    const message = err.message || 'Internal server error';
+    res.status(statusCode).json({
+      sucess:false,
+      statusCode,
+      message
+    })
+  })
