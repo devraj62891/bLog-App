@@ -3,6 +3,11 @@ import connectDB from "./src/db/index.js";
 const app = express();
 import "dotenv/config";
 import usersRoute from "./routes/user.route.js";
+import authRoutes from "./routes/auth.route.js"
+
+
+app.use(express.json());
+//this is veery important it allow json as  an input in the backend
 
 connectDB()
   .then(
@@ -16,4 +21,5 @@ connectDB()
 
 
   app.use("/api/user",usersRoute);
+  app.use("/api/auth",authRoutes);
   //here the final url will be localhost:3000/api/user/test
